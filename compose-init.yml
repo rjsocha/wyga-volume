@@ -1,0 +1,27 @@
+---
+version: "3"
+services:
+  volume:
+    build:
+      network: none
+      dockerfile_inline: |
+        FROM scratch
+        USER ${DEVELOPER?required}
+        WORKDIR /1
+        WORKDIR /2
+    init: true
+    command: /sbin/docker-init --version
+    volumes:
+      - vol1:/1
+      - vol2:/2
+
+  example:
+    image: alpine:3
+    command: ls -l /example
+    volumes:
+      - vol1:/example/volume_2
+      - vol2:/example/volume_1
+
+volumes:
+  vol1:
+  vol2:
