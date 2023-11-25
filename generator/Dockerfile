@@ -1,0 +1,7 @@
+FROM wyga/success
+ARG UID
+USER ${UID}:${UID}
+WORKDIR /1
+WORKDIR /2
+WORKDIR /3
+WORKDIR /4
